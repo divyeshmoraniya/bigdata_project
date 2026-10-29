@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config({});
 
 const REDIS_URI =
-  process.env.REDIS_URI;
+  process.env.REDIS_URI  ;
 
 const subClient = redis.createClient({ url: REDIS_URI });
 const kvClient = redis.createClient({ url: REDIS_URI });

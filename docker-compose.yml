@@ -20,15 +20,20 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092,PLAINTEXT_INTERNAL://kafka:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  clickhouse:
+  telemetry-clickhouse:
     image: clickhouse/clickhouse-server:latest
     container_name: telemetry-clickhouse
     ports:
       - "8123:8123" # HTTP API
       - "9000:9000" # Native client
+    environment:
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=clickhouse
+      - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
     ulimits:
       nofile:
         soft: 262144
