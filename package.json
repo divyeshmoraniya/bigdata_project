@@ -1,0 +1,10 @@
+{
+  "name": "bigdata-video-qoe-platform",
+  "version": "2.0.0",
+  "description": "Real-Time Big Data Video QoE Analytics & Autonomous Steering Platform",
+  "scripts": {
+    "start:backend": "cd backend && node server.js",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:all": "npx concurrently -n \"BACKEND,FRONTEND\" -c \"cyan,magenta\" \"npm run start:backend\" \"npm run start:frontend\""
+  }
+}
